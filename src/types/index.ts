@@ -88,6 +88,9 @@ export interface Quiz {
   numberOfQuestions: number;
   questions: Question[];
   createdAt: string;
+  attemptsCount?: number;
+  bestMarks?: number;
+  lastAttemptDate?: string;
 }
 
 export interface QuizAttempt {
@@ -96,12 +99,22 @@ export interface QuizAttempt {
   quizId: string;
   quizTitle: string;
   subject: string;
+  chapter?: string;
+  difficulty?: DifficultyLevel;
   score: number;
   totalQuestions: number;
   accuracy: number; // percentage
+  correctAnswersCount?: number;
+  wrongAnswersCount?: number;
+  skippedCount?: number;
   timeTakenSeconds: number;
   userAnswers: { [questionId: string]: number }; // questionId -> selected index
   completedAt: string;
+  marksObtained?: number;
+  maxMarks?: number;
+  positiveMarks?: number;
+  negativeMarks?: number;
+  questionsSnapshot?: Question[];
 }
 
 export interface MockTest {

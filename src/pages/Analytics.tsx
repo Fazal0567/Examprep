@@ -260,21 +260,32 @@ export const Analytics: React.FC = () => {
                 })}
 
                 {/* Quiz Attempts */}
-                {quizAttempts.map((attempt) => (
-                  <tr key={attempt.id} className="hover:bg-slate-50/80">
-                    <td className="py-3">
-                      <span className="px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-[10px] font-extrabold uppercase">
-                        Quiz
-                      </span>
-                    </td>
-                    <td className="py-3 font-bold text-slate-900">{attempt.quizTitle}</td>
-                    <td className="py-3">{attempt.subject}</td>
-                    <td className="py-3 font-bold text-indigo-600">{attempt.score} / {attempt.totalQuestions}</td>
-                    <td className="py-3 font-bold text-emerald-600">{attempt.accuracy}%</td>
-                    <td className="py-3 font-mono">{Math.round(attempt.timeTakenSeconds)}s</td>
-                    <td className="py-3 text-slate-400">{new Date(attempt.completedAt).toLocaleDateString()}</td>
-                  </tr>
-                ))}
+                {quizAttempts.map((attempt) => {
+                  const correct = attempt.correctAnswersCount ?? attempt.score ?? 0;
+                  const wrong = attempt.wrongAnswersCount ?? 0;
+                  const pos = attempt.positiveMarks ?? correct * 1;
+                  const neg = attempt.negativeMarks ?? wrong * 0.25;
+                  const marks = attempt.marksObtained ?? +(pos - neg).toFixed(2);
+                  const maxM = attempt.maxMarks ?? attempt.totalQuestions * 1;
+
+                  return (
+                    <tr key={attempt.id} className="hover:bg-slate-50/80">
+                      <td className="py-3">
+                        <span className="px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-[10px] font-extrabold uppercase">
+                          Quiz
+                        </span>
+                      </td>
+                      <td className="py-3 font-bold text-slate-900">{attempt.quizTitle}</td>
+                      <td className="py-3">{attempt.subject}</td>
+                      <td className="py-3 font-bold text-indigo-600">
+                        {marks > 0 ? `+${marks}` : marks} / {maxM}
+                      </td>
+                      <td className="py-3 font-bold text-emerald-600">{attempt.accuracy}%</td>
+                      <td className="py-3 font-mono">{Math.round(attempt.timeTakenSeconds)}s</td>
+                      <td className="py-3 text-slate-400">{new Date(attempt.completedAt).toLocaleDateString()}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

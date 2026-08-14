@@ -108,6 +108,19 @@ export async function getUserQuizzes(userId: string): Promise<Quiz[]> {
   return list.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 }
 
+export async function getQuiz(quizId: string): Promise<Quiz | null> {
+  try {
+    const ref = doc(db, 'quizzes', quizId);
+    const snap = await getDoc(ref);
+    if (snap.exists()) {
+      return { id: snap.id, ...snap.data() } as Quiz;
+    }
+  } catch (err) {
+    console.error('Error fetching quiz:', err);
+  }
+  return null;
+}
+
 export async function saveQuiz(quizData: Omit<Quiz, 'id'>): Promise<Quiz> {
   const ref = await addDoc(collection(db, 'quizzes'), quizData);
   return { id: ref.id, ...quizData };
@@ -116,6 +129,27 @@ export async function saveQuiz(quizData: Omit<Quiz, 'id'>): Promise<Quiz> {
 export async function saveQuizAttempt(attemptData: Omit<QuizAttempt, 'id'>): Promise<QuizAttempt> {
   const ref = await addDoc(collection(db, 'quiz_attempts'), attemptData);
   const attempt = { id: ref.id, ...attemptData };
+
+  // Also update parent quiz statistics if present
+  if (attemptData.quizId) {
+    try {
+      const quizRef = doc(db, 'quizzes', attemptData.quizId);
+      const quizSnap = await getDoc(quizRef);
+      if (quizSnap.exists()) {
+        const quizData = quizSnap.data() as Quiz;
+        const currentAttempts = (quizData.attemptsCount || 0) + 1;
+        const currentBest = Math.max(quizData.bestMarks ?? -999, attemptData.marksObtained ?? attemptData.score);
+        await updateDoc(quizRef, {
+          attemptsCount: currentAttempts,
+          bestMarks: currentBest,
+          lastAttemptDate: attemptData.completedAt,
+        });
+      }
+    } catch (e) {
+      console.warn('Could not update quiz metadata stats:', e);
+    }
+  }
+
   await updateAnalyticsAfterAttempt(attemptData.userId, attemptData.subject, attemptData.accuracy, attemptData.totalQuestions, attemptData.timeTakenSeconds);
   return attempt;
 }
