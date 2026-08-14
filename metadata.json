@@ -1,0 +1,6 @@
+{
+  "name": "ExamPrep AI",
+  "description": "AI-powered competitive exam preparation platform generating personalized quizzes and mock tests from uploaded study materials.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,88 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check auth
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isDocOwner() {
+      return isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid);
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Documents
+    match /documents/{docId} {
+      allow read, delete: if isDocOwner();
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Document Chunks
+    match /document_chunks/{chunkId} {
+      allow read, delete: if isDocOwner();
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Subjects
+    match /subjects/{subjectId} {
+      allow read, delete: if isDocOwner();
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Chapters
+    match /chapters/{chapterId} {
+      allow read, delete: if isDocOwner();
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Topics
+    match /topics/{topicId} {
+      allow read, delete: if isDocOwner();
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Quizzes
+    match /quizzes/{quizId} {
+      allow read, delete: if isDocOwner();
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Quiz Attempts
+    match /quiz_attempts/{attemptId} {
+      allow read, delete: if isDocOwner();
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Mock Tests
+    match /mock_tests/{mockId} {
+      allow read, delete: if isDocOwner();
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Mock Attempts
+    match /mock_attempts/{attemptId} {
+      allow read, delete: if isDocOwner();
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Analytics
+    match /analytics/{analyticsId} {
+      allow read, delete: if isDocOwner();
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Flashcard Decks
+    match /flashcardDecks/{deckId} {
+      allow read, delete: if isDocOwner();
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+  }
+}
