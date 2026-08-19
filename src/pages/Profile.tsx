@@ -199,7 +199,7 @@ export const Profile: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 max-w-3xl mx-auto">
+    <div className="space-y-8 max-w-4xl mx-auto">
       <div>
         <h1 className="text-2xl font-bold text-slate-900">Student Profile & Exam Goals</h1>
         <p className="text-xs text-slate-500 mt-1">
@@ -215,7 +215,7 @@ export const Profile: React.FC = () => {
       )}
 
       {/* Daily Quota Tracker Card */}
-      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 space-y-6">
+      <div className="bg-white rounded-3xl p-5 sm:p-7 md:p-8 border border-slate-200/80 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
           <div>
             <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
@@ -226,7 +226,7 @@ export const Profile: React.FC = () => {
               Track how many study documents, AI topic quizzes, and sectional mock tests you can upload/generate today.
             </p>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 border border-indigo-100 rounded-xl text-indigo-700 text-xs font-semibold self-start sm:self-auto">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 border border-indigo-100 rounded-xl text-indigo-700 text-xs font-semibold self-start sm:self-auto shrink-0">
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Resets daily at 00:00 Midnight</span>
           </div>
@@ -235,7 +235,7 @@ export const Profile: React.FC = () => {
         {loadingQuota ? (
           <div className="py-6 text-center text-xs text-slate-400">Loading daily practice & upload usage...</div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Study Document Uploads Quota */}
             <div className="bg-slate-50/70 rounded-2xl p-5 border border-slate-200/60 flex flex-col justify-between space-y-3">
               <div className="flex items-center justify-between">

@@ -388,28 +388,28 @@ export const Mocks: React.FC = () => {
 
         {/* Tab Switcher (Only when not taking a live test) */}
         {!activeMock && (
-          <div className="flex items-center bg-slate-100 p-1.5 rounded-2xl border border-slate-200 self-start sm:self-auto shrink-0">
+          <div className="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-200 w-full sm:w-auto overflow-x-auto">
             <button
               onClick={() => setActiveTab('generator')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                 activeTab === 'generator'
                   ? 'bg-white text-indigo-600 shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Generate Mock</span>
+              <Sparkles className="w-3.5 h-3.5 shrink-0" />
+              <span>Generate</span>
             </button>
 
             <button
               onClick={() => setActiveTab('history')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                 activeTab === 'history'
                   ? 'bg-white text-indigo-600 shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <History className="w-3.5 h-3.5" />
+              <History className="w-3.5 h-3.5 shrink-0" />
               <span>Mock History</span>
               {mockAttempts.length > 0 && (
                 <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-indigo-100 text-indigo-700 font-extrabold ml-0.5">
@@ -420,13 +420,13 @@ export const Mocks: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('papers')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                 activeTab === 'papers'
                   ? 'bg-white text-indigo-600 shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <FileText className="w-3.5 h-3.5" />
+              <FileText className="w-3.5 h-3.5 shrink-0" />
               <span>Saved Papers</span>
               {savedMockTests.length > 0 && (
                 <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-200 text-slate-700 font-extrabold ml-0.5">
@@ -770,7 +770,7 @@ export const Mocks: React.FC = () => {
             {/* Main Question Box */}
             <div className="lg:col-span-3 space-y-6">
               {/* Header Timer Bar */}
-              <div className="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-2xs flex items-center justify-between">
+              <div className="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">
                     {activeMock.subject} • {activeMock.difficulty}
@@ -778,11 +778,11 @@ export const Mocks: React.FC = () => {
                   <h2 className="text-sm font-bold text-slate-900 mt-1">{activeMock.title}</h2>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 self-end sm:self-auto">
                   {!isSubmitted ? (
                     <>
                       <div
-                        className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl font-mono font-bold text-xs ${
+                        className={`flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-xl font-mono font-bold text-xs ${
                           timeLeftSeconds < 180
                             ? 'bg-red-100 text-red-700 animate-pulse'
                             : 'bg-slate-100 text-slate-800'
@@ -795,7 +795,7 @@ export const Mocks: React.FC = () => {
                       <button
                         onClick={handleSubmitMock}
                         disabled={isSubmitting}
-                        className="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-1"
+                        className="px-3.5 sm:px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-1"
                       >
                         {isSubmitting ? 'Submitting...' : 'Submit Test'}
                       </button>
@@ -816,8 +816,8 @@ export const Mocks: React.FC = () => {
 
               {/* Active Question Box */}
               {activeMock.questions[currentIdx] && (
-                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-6">
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-3 text-xs font-semibold text-slate-500">
+                <div className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 border border-slate-200/80 shadow-xs space-y-5 sm:space-y-6">
+                  <div className="flex items-center justify-between border-b border-slate-100 pb-3 text-xs font-semibold text-slate-500 gap-2 flex-wrap sm:flex-nowrap">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-slate-800">
                         Question {currentIdx + 1} of {activeMock.questions.length}
@@ -836,7 +836,7 @@ export const Mocks: React.FC = () => {
                             onClick={() => handleClearAnswer(activeMock.questions[currentIdx].id)}
                             className="text-xs font-semibold text-slate-400 hover:text-slate-600 px-2 py-1"
                           >
-                            Clear Response
+                            Clear
                           </button>
                         )}
                         <button
@@ -885,11 +885,11 @@ export const Mocks: React.FC = () => {
                     )}
                   </div>
 
-                  <h3 className="text-base font-bold text-slate-900 leading-relaxed">
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-relaxed">
                     {activeMock.questions[currentIdx].question}
                   </h3>
 
-                  <div className="space-y-3">
+                  <div className="space-y-2.5 sm:space-y-3">
                     {activeMock.questions[currentIdx].options.map((opt, optIdx) => {
                       const qId = activeMock.questions[currentIdx].id;
                       const isSelected = userAnswers[qId] === optIdx;
@@ -914,9 +914,9 @@ export const Mocks: React.FC = () => {
                           key={optIdx}
                           disabled={isSubmitted}
                           onClick={() => handleSelectAnswer(qId, optIdx)}
-                          className={`w-full p-4 rounded-2xl border text-xs text-left transition-all flex items-center justify-between gap-3 ${btnStyle}`}
+                          className={`w-full p-3 sm:p-4 rounded-2xl border text-xs text-left transition-all flex items-center justify-between gap-3 ${btnStyle}`}
                         >
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-2.5 sm:gap-3">
                             <span className="w-6 h-6 rounded-lg bg-slate-100 text-slate-700 font-bold flex items-center justify-center text-[10px] shrink-0">
                               {String.fromCharCode(65 + optIdx)}
                             </span>
@@ -949,11 +949,11 @@ export const Mocks: React.FC = () => {
                     </div>
                   )}
 
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-100 gap-2 flex-wrap sm:flex-nowrap">
                     <button
                       disabled={currentIdx === 0}
                       onClick={() => setCurrentIdx((p) => p - 1)}
-                      className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 disabled:opacity-30 hover:bg-slate-50"
+                      className="px-3.5 sm:px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 disabled:opacity-30 hover:bg-slate-50"
                     >
                       Previous
                     </button>
@@ -961,7 +961,7 @@ export const Mocks: React.FC = () => {
                     <button
                       disabled={currentIdx === activeMock.questions.length - 1}
                       onClick={() => setCurrentIdx((p) => p + 1)}
-                      className="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold disabled:opacity-30"
+                      className="px-4 sm:px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold disabled:opacity-30"
                     >
                       Next Question
                     </button>
@@ -971,7 +971,7 @@ export const Mocks: React.FC = () => {
             </div>
 
             {/* Question Palette Sidebar */}
-            <div className="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-2xs space-y-4 h-fit">
+            <div className="bg-white rounded-3xl p-4 sm:p-5 border border-slate-200/80 shadow-2xs space-y-4 h-fit">
               <h4 className="font-bold text-slate-900 text-xs border-b border-slate-100 pb-2 flex items-center justify-between">
                 <span>Question Palette</span>
                 <span className="text-[10px] text-slate-400 font-normal">
@@ -979,7 +979,7 @@ export const Mocks: React.FC = () => {
                 </span>
               </h4>
 
-              <div className="grid grid-cols-5 gap-2">
+              <div className="grid grid-cols-5 xs:grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-5 gap-1.5 sm:gap-2 max-h-60 lg:max-h-none overflow-y-auto p-1">
                 {activeMock.questions.map((q, idx) => {
                   const isAns = userAnswers[q.id] !== undefined;
                   const isMarked = markedForReview[q.id];

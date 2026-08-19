@@ -335,9 +335,9 @@ export const Documents: React.FC = () => {
 
       {/* KNOWLEDGE ENGINE VIEWER MODAL */}
       {activeModalDoc && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 dark:bg-black/80 backdrop-blur-xs p-4 overflow-y-auto">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 dark:border-slate-800 p-6 sm:p-8 space-y-6">
-            <div className="flex items-start justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 dark:bg-black/80 backdrop-blur-xs p-2 sm:p-4 overflow-y-auto">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl w-full max-w-3xl max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-100 dark:border-slate-800 p-4 sm:p-6 md:p-8 space-y-5 sm:space-y-6">
+            <div className="flex items-start justify-between border-b border-slate-100 dark:border-slate-800 pb-4 gap-3">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="px-2.5 py-0.5 rounded-md bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 font-bold text-[10px] uppercase">
@@ -345,15 +345,15 @@ export const Documents: React.FC = () => {
                   </span>
                   <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">{activeModalDoc.subject}</span>
                 </div>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-1">{activeModalDoc.name}</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-1 leading-snug">{activeModalDoc.name}</h2>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   onClick={() => promptDelete(activeModalDoc)}
                   className="p-2 rounded-full hover:bg-red-50 dark:hover:bg-red-950/60 text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors cursor-pointer"
                   title="Delete document"
                 >
-                  <Trash2 className="w-5 h-5" />
+                  <Trash2 className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
                 <button
                   onClick={() => setActiveModalDoc(null)}
@@ -382,7 +382,7 @@ export const Documents: React.FC = () => {
                 </h3>
 
                 {activeModalDoc.chapters.map((chapter, cIdx) => (
-                  <div key={chapter.id || cIdx} className="border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+                  <div key={chapter.id || cIdx} className="border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4">
                     <div className="border-b border-slate-100 dark:border-slate-800 pb-2">
                       <h4 className="font-bold text-indigo-700 dark:text-indigo-400 text-sm">
                         Chapter {cIdx + 1}: {chapter.title}
@@ -393,11 +393,11 @@ export const Documents: React.FC = () => {
                     </div>
 
                     {/* Topics */}
-                    <div className="space-y-4 pl-2">
+                    <div className="space-y-4 sm:pl-2">
                       {(chapter.topics || []).map((topic, tIdx) => (
-                        <div key={topic.id || tIdx} className="bg-slate-50 dark:bg-slate-800/60 rounded-xl p-4 border border-slate-100 dark:border-slate-800 space-y-3">
+                        <div key={topic.id || tIdx} className="bg-slate-50 dark:bg-slate-800/60 rounded-xl p-3.5 sm:p-4 border border-slate-100 dark:border-slate-800 space-y-3">
                           <h5 className="font-semibold text-slate-900 dark:text-white text-xs flex items-center gap-1.5">
-                            <BookOpen className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+                            <BookOpen className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0" />
                             <span>Topic {tIdx + 1}: {topic.title}</span>
                           </h5>
 
@@ -442,9 +442,9 @@ export const Documents: React.FC = () => {
                               </span>
                               <div className="space-y-1.5">
                                 {topic.formulas.map((form, idx) => (
-                                  <div key={idx} className="p-2.5 bg-indigo-50/50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/60 rounded-lg text-xs flex items-center justify-between font-mono">
+                                  <div key={idx} className="p-2.5 bg-indigo-50/50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/60 rounded-lg text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 font-mono">
                                     <span className="font-semibold text-slate-800 dark:text-slate-200 font-sans">{form.name}:</span>
-                                    <span className="font-bold text-indigo-700 dark:text-indigo-300 bg-white dark:bg-slate-800 px-2 py-1 rounded border border-indigo-100 dark:border-indigo-800">{form.formula}</span>
+                                    <span className="font-bold text-indigo-700 dark:text-indigo-300 bg-white dark:bg-slate-800 px-2 py-1 rounded border border-indigo-100 dark:border-indigo-800 self-start sm:self-auto break-all sm:break-normal">{form.formula}</span>
                                   </div>
                                 ))}
                               </div>

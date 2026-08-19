@@ -36,89 +36,89 @@ export const AppLayout: React.FC = () => {
       <div className="flex flex-1 relative">
         <Sidebar />
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full pb-20 md:pb-8">
+        <main className="flex-1 p-3 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full pb-24 md:pb-8 overflow-x-hidden">
           <Outlet />
         </main>
       </div>
 
       {/* Mobile Bottom Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200/80 dark:border-slate-800 px-1 py-1.5 flex justify-around shadow-lg">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200/80 dark:border-slate-800 px-1 py-1 flex items-center justify-around shadow-lg">
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `flex flex-col items-center justify-center gap-0.5 text-[9px] xs:text-[10px] font-semibold py-1 px-1.5 rounded-xl transition-all min-w-[52px] ${
-              isActive ? 'text-indigo-600 bg-indigo-50/80 font-bold' : 'text-slate-500 hover:text-slate-700'
+            `flex-1 flex flex-col items-center justify-center gap-0.5 text-[8px] xs:text-[9px] sm:text-[10px] font-semibold py-1 px-0.5 rounded-lg transition-all min-w-0 ${
+              isActive ? 'text-indigo-600 bg-indigo-50/80 dark:bg-indigo-950/60 font-bold' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400'
             }`
           }
         >
-          <LayoutDashboard className="w-5 h-5 shrink-0" />
-          <span className="truncate">Home</span>
+          <LayoutDashboard className="w-4 h-4 xs:w-4.5 xs:h-4.5 shrink-0" />
+          <span className="truncate max-w-full">Home</span>
         </NavLink>
         <NavLink
           to="/documents"
           className={({ isActive }) =>
-            `flex flex-col items-center justify-center gap-0.5 text-[9px] xs:text-[10px] font-semibold py-1 px-1.5 rounded-xl transition-all min-w-[52px] ${
-              isActive ? 'text-indigo-600 bg-indigo-50/80 font-bold' : 'text-slate-500 hover:text-slate-700'
+            `flex-1 flex flex-col items-center justify-center gap-0.5 text-[8px] xs:text-[9px] sm:text-[10px] font-semibold py-1 px-0.5 rounded-lg transition-all min-w-0 ${
+              isActive ? 'text-indigo-600 bg-indigo-50/80 dark:bg-indigo-950/60 font-bold' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400'
             }`
           }
         >
-          <FileText className="w-5 h-5 shrink-0" />
-          <span className="truncate">Docs</span>
+          <FileText className="w-4 h-4 xs:w-4.5 xs:h-4.5 shrink-0" />
+          <span className="truncate max-w-full">Docs</span>
         </NavLink>
         <NavLink
           to="/quiz-generator"
           className={({ isActive }) =>
-            `flex flex-col items-center justify-center gap-0.5 text-[9px] xs:text-[10px] font-semibold py-1 px-1.5 rounded-xl transition-all min-w-[52px] ${
-              isActive ? 'text-indigo-600 bg-indigo-50/80 font-bold' : 'text-slate-500 hover:text-slate-700'
+            `flex-1 flex flex-col items-center justify-center gap-0.5 text-[8px] xs:text-[9px] sm:text-[10px] font-semibold py-1 px-0.5 rounded-lg transition-all min-w-0 ${
+              isActive ? 'text-indigo-600 bg-indigo-50/80 dark:bg-indigo-950/60 font-bold' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400'
             }`
           }
         >
-          <HelpCircle className="w-5 h-5 shrink-0" />
-          <span className="truncate">Quizzes</span>
+          <HelpCircle className="w-4 h-4 xs:w-4.5 xs:h-4.5 shrink-0" />
+          <span className="truncate max-w-full">Quiz</span>
         </NavLink>
         <NavLink
           to="/mocks"
           className={({ isActive }) =>
-            `flex flex-col items-center justify-center gap-0.5 text-[9px] xs:text-[10px] font-semibold py-1 px-1.5 rounded-xl transition-all min-w-[52px] ${
-              isActive ? 'text-indigo-600 bg-indigo-50/80 font-bold' : 'text-slate-500 hover:text-slate-700'
+            `flex-1 flex flex-col items-center justify-center gap-0.5 text-[8px] xs:text-[9px] sm:text-[10px] font-semibold py-1 px-0.5 rounded-lg transition-all min-w-0 ${
+              isActive ? 'text-indigo-600 bg-indigo-50/80 dark:bg-indigo-950/60 font-bold' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400'
             }`
           }
         >
-          <Clock className="w-5 h-5 shrink-0" />
-          <span className="truncate">Mocks</span>
+          <Clock className="w-4 h-4 xs:w-4.5 xs:h-4.5 shrink-0" />
+          <span className="truncate max-w-full">Mocks</span>
         </NavLink>
         <NavLink
           to="/flashcards"
           className={({ isActive }) =>
-            `flex flex-col items-center justify-center gap-0.5 text-[9px] xs:text-[10px] font-semibold py-1 px-1.5 rounded-xl transition-all min-w-[52px] ${
-              isActive ? 'text-indigo-600 bg-indigo-50/80 font-bold' : 'text-slate-500 hover:text-slate-700'
+            `flex-1 flex flex-col items-center justify-center gap-0.5 text-[8px] xs:text-[9px] sm:text-[10px] font-semibold py-1 px-0.5 rounded-lg transition-all min-w-0 ${
+              isActive ? 'text-indigo-600 bg-indigo-50/80 dark:bg-indigo-950/60 font-bold' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400'
             }`
           }
         >
-          <Layers className="w-5 h-5 shrink-0" />
-          <span className="truncate">Cards</span>
+          <Layers className="w-4 h-4 xs:w-4.5 xs:h-4.5 shrink-0" />
+          <span className="truncate max-w-full">Cards</span>
         </NavLink>
         <NavLink
           to="/analytics"
           className={({ isActive }) =>
-            `flex flex-col items-center justify-center gap-0.5 text-[9px] xs:text-[10px] font-semibold py-1 px-1.5 rounded-xl transition-all min-w-[52px] ${
-              isActive ? 'text-indigo-600 bg-indigo-50/80 font-bold' : 'text-slate-500 hover:text-slate-700'
+            `flex-1 flex flex-col items-center justify-center gap-0.5 text-[8px] xs:text-[9px] sm:text-[10px] font-semibold py-1 px-0.5 rounded-lg transition-all min-w-0 ${
+              isActive ? 'text-indigo-600 bg-indigo-50/80 dark:bg-indigo-950/60 font-bold' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400'
             }`
           }
         >
-          <BarChart2 className="w-5 h-5 shrink-0" />
-          <span className="truncate">Stats</span>
+          <BarChart2 className="w-4 h-4 xs:w-4.5 xs:h-4.5 shrink-0" />
+          <span className="truncate max-w-full">Stats</span>
         </NavLink>
         <NavLink
           to="/profile"
           className={({ isActive }) =>
-            `flex flex-col items-center justify-center gap-0.5 text-[9px] xs:text-[10px] font-semibold py-1 px-1.5 rounded-xl transition-all min-w-[52px] ${
-              isActive ? 'text-indigo-600 bg-indigo-50/80 font-bold' : 'text-slate-500 hover:text-slate-700'
+            `flex-1 flex flex-col items-center justify-center gap-0.5 text-[8px] xs:text-[9px] sm:text-[10px] font-semibold py-1 px-0.5 rounded-lg transition-all min-w-0 ${
+              isActive ? 'text-indigo-600 bg-indigo-50/80 dark:bg-indigo-950/60 font-bold' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400'
             }`
           }
         >
-          <User className="w-5 h-5 shrink-0" />
-          <span className="truncate">Profile</span>
+          <User className="w-4 h-4 xs:w-4.5 xs:h-4.5 shrink-0" />
+          <span className="truncate max-w-full">Profile</span>
         </NavLink>
       </nav>
     </div>

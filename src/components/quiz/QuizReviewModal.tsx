@@ -69,12 +69,12 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5">
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl w-full max-w-5xl max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 md:p-6">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-2xl w-full max-w-5xl max-h-[94vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         {/* Modal Header */}
-        <div className="p-5 sm:p-6 border-b border-slate-100 bg-slate-50/70 flex items-start justify-between gap-4 shrink-0">
+        <div className="p-4 sm:p-6 border-b border-slate-100 bg-slate-50/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shrink-0">
           <div className="space-y-1">
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <span className="text-[10px] font-extrabold uppercase tracking-wider bg-indigo-100 text-indigo-700 px-2.5 py-0.5 rounded-md">
                 {attempt.subject}
               </span>
@@ -102,13 +102,13 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
             </h2>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
             <button
               onClick={() => onReattempt(attempt, questions)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition-all"
+              className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition-all"
             >
               <RotateCcw className="w-3.5 h-3.5" />
-              <span>Reattempt Quiz</span>
+              <span>Reattempt</span>
             </button>
             <button
               onClick={onClose}
@@ -120,26 +120,26 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
         </div>
 
         {/* Score & Marks Summary Banner */}
-        <div className="p-4 sm:p-5 bg-gradient-to-r from-indigo-900 via-indigo-950 to-slate-900 text-white grid grid-cols-2 sm:grid-cols-5 gap-3 shrink-0">
-          <div className="p-3 bg-white/10 rounded-2xl border border-white/10 flex flex-col justify-center">
-            <span className="text-[10px] uppercase font-bold text-indigo-200 tracking-wider">Marks Obtained</span>
+        <div className="p-3 sm:p-5 bg-gradient-to-r from-indigo-900 via-indigo-950 to-slate-900 text-white grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 shrink-0">
+          <div className="p-2.5 sm:p-3 bg-white/10 rounded-2xl border border-white/10 flex flex-col justify-center">
+            <span className="text-[9px] sm:text-[10px] uppercase font-bold text-indigo-200 tracking-wider">Marks</span>
             <div className="flex items-baseline gap-1 mt-0.5">
-              <span className="text-xl sm:text-2xl font-black text-amber-300">
+              <span className="text-lg sm:text-2xl font-black text-amber-300">
                 {marksObtained > 0 ? `+${marksObtained}` : marksObtained}
               </span>
               <span className="text-xs text-indigo-200 font-bold">/ {maxMarks}</span>
             </div>
           </div>
 
-          <div className="p-3 bg-white/5 rounded-2xl border border-white/5 flex flex-col justify-center">
-            <span className="text-[10px] uppercase font-bold text-slate-300 tracking-wider">Accuracy</span>
-            <span className="text-lg sm:text-xl font-black text-emerald-400 mt-0.5">
+          <div className="p-2.5 sm:p-3 bg-white/5 rounded-2xl border border-white/5 flex flex-col justify-center">
+            <span className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-300 tracking-wider">Accuracy</span>
+            <span className="text-base sm:text-xl font-black text-emerald-400 mt-0.5">
               {attempt.accuracy}%
             </span>
           </div>
 
-          <div className="p-3 bg-white/5 rounded-2xl border border-white/5 flex flex-col justify-center">
-            <span className="text-[10px] uppercase font-bold text-slate-300 tracking-wider">Score Breakdown</span>
+          <div className="p-2.5 sm:p-3 bg-white/5 rounded-2xl border border-white/5 flex flex-col justify-center">
+            <span className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-300 tracking-wider">Breakdown</span>
             <div className="flex items-center gap-1.5 text-xs font-bold mt-0.5">
               <span className="text-emerald-400">+{positiveMarks}</span>
               <span className="text-slate-400">/</span>
@@ -147,15 +147,15 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
             </div>
           </div>
 
-          <div className="p-3 bg-white/5 rounded-2xl border border-white/5 flex flex-col justify-center">
-            <span className="text-[10px] uppercase font-bold text-slate-300 tracking-wider">Time Spent</span>
+          <div className="p-2.5 sm:p-3 bg-white/5 rounded-2xl border border-white/5 flex flex-col justify-center">
+            <span className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-300 tracking-wider">Time</span>
             <span className="text-xs sm:text-sm font-bold text-slate-200 mt-0.5 font-mono">
               {formatSeconds(attempt.timeTakenSeconds)}
             </span>
           </div>
 
-          <div className="col-span-2 sm:col-span-1 p-3 bg-white/5 rounded-2xl border border-white/5 flex flex-col justify-center">
-            <span className="text-[10px] uppercase font-bold text-slate-300 tracking-wider">Responses</span>
+          <div className="col-span-2 sm:col-span-1 p-2.5 sm:p-3 bg-white/5 rounded-2xl border border-white/5 flex flex-col justify-center">
+            <span className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-300 tracking-wider">Responses</span>
             <div className="flex items-center gap-2 text-xs font-bold mt-0.5">
               <span className="text-emerald-400">{correctCount} ✔</span>
               <span className="text-rose-400">{wrongCount} ✖</span>
@@ -165,15 +165,15 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
         </div>
 
         {/* Filter Pills */}
-        <div className="px-5 py-3 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3 shrink-0 bg-white">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-slate-500 flex items-center gap-1">
+        <div className="px-4 sm:px-5 py-2.5 sm:py-3 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2.5 shrink-0 bg-white">
+          <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+            <span className="text-xs font-bold text-slate-500 flex items-center gap-1 shrink-0">
               <Filter className="w-3.5 h-3.5" /> Filter:
             </span>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 shrink-0">
               <button
                 onClick={() => { setFilter('all'); setSelectedIdx(0); }}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                   filter === 'all'
                     ? 'bg-slate-900 text-white'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -183,7 +183,7 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
               </button>
               <button
                 onClick={() => { setFilter('wrong'); setSelectedIdx(0); }}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                   filter === 'wrong'
                     ? 'bg-rose-600 text-white'
                     : 'bg-rose-50 text-rose-700 hover:bg-rose-100'
@@ -193,7 +193,7 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
               </button>
               <button
                 onClick={() => { setFilter('correct'); setSelectedIdx(0); }}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                   filter === 'correct'
                     ? 'bg-emerald-600 text-white'
                     : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
@@ -203,7 +203,7 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
               </button>
               <button
                 onClick={() => { setFilter('skipped'); setSelectedIdx(0); }}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                   filter === 'skipped'
                     ? 'bg-amber-600 text-white'
                     : 'bg-amber-50 text-amber-700 hover:bg-amber-100'
@@ -214,15 +214,15 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
             </div>
           </div>
 
-          <span className="text-xs text-slate-400 font-semibold">
+          <span className="text-[11px] text-slate-400 font-semibold hidden sm:inline">
             Showing {filteredQuestions.length} of {questions.length} questions
           </span>
         </div>
 
         {/* Content Body: Left question list + Right active question card */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-slate-50/40">
+        <div className="flex-1 overflow-y-auto p-3 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 bg-slate-50/40">
           {/* Question Navigator */}
-          <div className="lg:col-span-4 space-y-3">
+          <div className="lg:col-span-4 space-y-2 sm:space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Questions Index
             </h4>
@@ -232,7 +232,7 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
                 No questions in this filter category.
               </div>
             ) : (
-              <div className="grid grid-cols-5 sm:grid-cols-6 lg:grid-cols-4 gap-2 max-h-72 lg:max-h-96 overflow-y-auto p-1">
+              <div className="grid grid-cols-5 xs:grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-4 gap-1.5 sm:gap-2 max-h-36 sm:max-h-48 lg:max-h-[500px] overflow-y-auto p-1 bg-white rounded-2xl border border-slate-200/80">
                 {filteredQuestions.map((item, idx) => {
                   const isSelected = selectedIdx === idx;
                   let colorClass = 'bg-slate-100 text-slate-700 border-slate-200';
@@ -245,14 +245,14 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
                   }
 
                   if (isSelected) {
-                    colorClass += ' ring-2 ring-indigo-600 ring-offset-2';
+                    colorClass += ' ring-2 ring-indigo-600 ring-offset-1';
                   }
 
                   return (
                     <button
                       key={item.question.id}
                       onClick={() => setSelectedIdx(idx)}
-                      className={`h-10 rounded-xl border text-xs flex items-center justify-center transition-all shadow-2xs ${colorClass}`}
+                      className={`h-9 sm:h-10 rounded-xl border text-[11px] sm:text-xs flex items-center justify-center transition-all shadow-2xs ${colorClass}`}
                     >
                       <span>Q{item.originalIdx + 1}</span>
                     </button>
@@ -265,9 +265,9 @@ export const QuizReviewModal: React.FC<QuizReviewModalProps> = ({
           {/* Detailed Question Review Box */}
           <div className="lg:col-span-8">
             {activeItem ? (
-              <div className="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/80 shadow-xs space-y-6">
+              <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 border border-slate-200/80 shadow-xs space-y-4 sm:space-y-6">
                 {/* Question meta header */}
-                <div className="flex items-center justify-between border-b border-slate-100 pb-3 text-xs font-semibold">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3 text-xs font-semibold gap-2 flex-wrap sm:flex-nowrap">
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-slate-800">
                       Question {activeItem.originalIdx + 1} of {questions.length}
